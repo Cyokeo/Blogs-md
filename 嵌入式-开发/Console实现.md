@@ -1,6 +1,6 @@
 ---
 title: UART - Console实现
-categories: 嵌入式-架构
+categories: 嵌入式-开发
 ---
 ## 常用开源实现
 - letter-shell

@@ -1,15 +1,9 @@
 ---
-title: Linux-基础
-date: 2024-07-27 14:06:17
-tags:
-categories:
-- [Linux相关]
+title: " Linux - 文件系统"
+categories: 操作系统
 ---
-
-## Linux命令
-
-
-## 常见概念
+## 参考博客
+- [硬链接和软链接](https://gnu-linux.readthedocs.io/zh/latest/Chapter03/00_link.html#id2)
 
 ## 文件系统
 ### 四个关键概念

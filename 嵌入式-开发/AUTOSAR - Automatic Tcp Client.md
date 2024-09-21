@@ -42,7 +42,7 @@ categories: 嵌入式-开发
 - SOAD_TCP_RESET
 - SOAD_TCP_CLOSED
 	- 将tcp client设置为SOAD_CLOSE_SOCKET_RECONNECT状态
-	- 并设置SoCon state 事件，等待MainFunc处理: 后续会被设置为RECONNECT状态
+	- 并设置SoCon state 事件，等待MainFunc处理: 后续会被设置为RECONNECT状态，并且设置SoCon state事件
 - SOAD_TCP_FIN_RECEIVED
 	- 对于tcp client 处理类似
 
@@ -60,7 +60,11 @@ categories: 嵌入式-开发
 ### `ONLINE`:
 
 ## 使用案例 - DoIP
-DoIP在调用SoAd模块的关闭连接API后，会继续判断当前连接的状态是否为RECONNECT，如果是，则***主动将状态变更为OFFLINE***
+DoIP在调用SoAd模块的***请求关闭连接***API后，会继续判断当前连接的状态是否为RECONNECT，如果是，则***主动将状态变更为OFFLINE***。这样是为了避免一次额外的状态改变回调？
+
+但是主动调用SoCon_close，正常情况下，SoCon的状态会被设置为： SOAD_CLOSE_OFFLINE。被设置为RECONNECT，会在下面这种情况下发生：
+1. Close最终也是在MainFunc中进行
+2. 这段时间内
 
 ## 启发 - GUID -> LocalIdx
 - 只能for所有本地idxs，检查其绑定的GUID信息是否与当前查找的GUID相同！！！

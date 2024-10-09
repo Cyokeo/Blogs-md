@@ -8,6 +8,7 @@ tags:
 - [为什么C++的成员模板函数不能是 virtual](https://csguide.cn/cpp/object_oriented/why_template_cannot_be_virtual.html#%E9%97%AE%E9%A2%98%E5%90%AB%E4%B9%89)
 
 ## 自己分析
+- 编译器在编译某个单元时，一定要知道相关类的定义才可以
 
 ### 模版可以作为非虚成员函数
 - 成员函数，也就是代码，存储在代码段；是与具体的对象无关的；其不会影响类实例化对象的大小

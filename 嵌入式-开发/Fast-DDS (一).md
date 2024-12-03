@@ -35,3 +35,7 @@ categories: 嵌入式-开发
 0. 删除m_changes中的最小值
 1. 如果NO_KEY，直接从m_changes中删除即可
 2. 如果with_key，要根据该change的key，先将其从instance中删除，之后再从m_changes中删除
+
+### PDPClient
+1. 中的pdp_reader使用的就是ReaderHistory的实例；因此statefulReader在调用`mp_history->received_change(a_change, 0)`时调用的就是`ReaderHistory::received_change`改函数仅将change加入到m_changes中，不将其加入到instances中！！！
+2. EDPSimple阶段也是这样吗？-> 是的√

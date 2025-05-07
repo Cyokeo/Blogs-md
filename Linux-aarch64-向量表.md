@@ -63,11 +63,12 @@ categories:
 
         .align	11
     SYM_CODE_START(vectors)
+	    // interrupted when cpu in el1 and thread mode
         kernel_ventry	1, t, 64, sync		// Synchronous EL1t
         kernel_ventry	1, t, 64, irq		// IRQ EL1t
         kernel_ventry	1, t, 64, fiq		// FIQ EL1t
         kernel_ventry	1, t, 64, error		// Error EL1t
-
+		// el1 and Hypervisor mode?
         kernel_ventry	1, h, 64, sync		// Synchronous EL1h
         kernel_ventry	1, h, 64, irq		// IRQ EL1h
         kernel_ventry	1, h, 64, fiq		// FIQ EL1h

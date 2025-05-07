@@ -5,6 +5,8 @@ tags:
 categories:
 - [Linux相关]
 ---
+## 参考博客
+- [ThreadInfo结构和内核栈的两种关系](https://cloud.tencent.com/developer/article/1603829)
 
 # 任务切换
 

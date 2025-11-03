@@ -1,0 +1,1 @@
+g_main_context_new()函数内部并没有创建一个线程

@@ -16,7 +16,7 @@ categories:
 - `(a b) mod m = [(a mod m) (b mod m)] mod m`
 
 ### 幂运算与mod
-- <font color=DC143C>指数不能随便取余</font>，如果指数在 64 位整数的范围内，可以使用[快速幂](https://leetcode.cn/problems/powx-n/description/)计算方法
+- <font color=DC143C>指数不能随便取余</font>，如果指数在 64 位整数的范围内，可以使用[快速幂](https://leetcode.cn/problems/powx-n/solutions/2858114/tu-jie-yi-zhang-tu-miao-dong-kuai-su-mi-ykp3i)计算方法
 > 注：如果指数超出 64 位整数的范围，需要用「欧拉降幂」处理。
 
 ### 负数与mod

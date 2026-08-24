@@ -49,6 +49,12 @@
 // words[1]: [ 信号位图 | 绑定端点 | 等待队列 ]
 // 权限位：信号、等待、绑定
 ```
+包含如下信息
+1. notification_t 类型的地址；
+2. notification badge信息；【徽章信息，用于标识signal的发送者信息】-> 该信息会被传递给waiter
+	1. badge为另一个cap的captr，其可以是endpoint或者notification
+	2. badge所标识的cap是waiter的一个cap；可以根据badge(captr)信息从waiter的cnode中查询到对应的cap
+3. 
 
 ### 6. **CNode (Capability Node)**
 ```c
@@ -81,7 +87,13 @@
 // words[1]: [ 映射信息 | 缓存属性 | 内存类型 ]
 // 权限位：读、写、执行、映射、缓存控制
 ```
-
+每一个具体的物理page都由一个Frame Cap表征:
+1. 其中会存储对应的物理页起始地址在内核空间的虚拟地址；因此内核可以通过其获取真实的物理地址
+2. 其还会存储映射到的虚拟地址：当然该虚拟地址的值就是在对应的线程虚拟内存空间中了
+3. 存储Frame属性：是否为Device Frame
+4. 存储访问权限信息（VMRights）
+5. 对应物理页在内核态的虚拟基地址
+6. 该Frame的页大小【4K, 2M, ...】
 ### 10. **IRQ Handler**
 ```c
 // IRQ Handler capability:

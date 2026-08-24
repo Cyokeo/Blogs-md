@@ -28,6 +28,21 @@ cap_t root_cnode[seL4_NumInitialCaps] = {
 };
 ```
 因此，后续可以从tcbCTable node 访问到这些能力槽，进而获取到能力cap
+- seL4_CapInitThreadVSpace
+	- 可以通过这个能力槽获取PGD table的virtual address，进而获得其PGD表的物理基地址，进而可以设置ttbr寄存器，进行对应进程的专属内存映射行为
+	- 同样的，对应不同层级的转换表，都有一个对应的vspace_cap。都可以从该cap中获取对应表的virtual address
+- seL4_CapBootInfoFrame
+	- 存储了bootinfo frame的userland virtual addr和kernelland virtual address「pptr」
+- seL4_CapInitThreadASIDPool
+	- 记录了init thread的ASID
+	- 和一片区域【one Page】的 pptr_t 地址信息；这片区域后续会被当做asid_pool类型进行解引用；其中含有一个asid_map_t类型数组，用于记录所有ASID对应的asid_map_t信息
+	```c
+	ap->array[ASID_LOW(IT_ASID)] = asid_map;
+	armKSASIDTable[ASID_HIGH(IT_ASID)] = ap;
+	```
+	- ASID与地址转换的TLB相关
+	- asid_map_t中记录了PGD基地址信息
+	
 
 ### 这几个slot是配置相关的
 1. CTable指明了TCB的Cnode（也即thread的CSpace）
